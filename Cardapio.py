@@ -23,6 +23,9 @@ codigo |alimento       |valor |
 2      |lasanha        |20,00 |
 3      |strogonoff     |180,00|
 4      |bife acebolado |15,00 |
+5      |bife acebolado |15,00 |
+6      |bife acebolado |15,00 |
+7      |bife acebolado |15,00 |
     """)
 opcao = input("escolha seu prato:")
 match(opcao):
