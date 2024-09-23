@@ -214,4 +214,3 @@ while True:
             print(f"Valor com desconto: {valor_total:.2f}R$")
             print(f"Codigo dos produtos solicitados: {lista_selecao}")
             break
- 
