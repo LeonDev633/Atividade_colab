@@ -27,17 +27,21 @@ codigo |alimento       |valor |
 6      |bife acebolado |15,00 |
 7      |bife acebolado |15,00 |
     """)
-opcao = input("escolha seu prato:")
-match(opcao):
-    case "1":
-        pedido = "picanha $25,00"
-    case "2":
-        pedido = "lasanha $20,00"
-    case "3":
-        pedido = "strogonoff $180,00"
-    case "4":
-        pedido = "bife acebolado $15,00"
-    case _:
-        print("não consta no menu")
+while True:
+    opcao = input("escolha seu prato:")
+    match(opcao):
+        case "1":
+            pedido = "picanha $25,00"
+            opc = int(input)
+            if opc == 1:
+                break
+        case "2":
+            pedido = "lasanha $20,00"
+        case "3":
+            pedido = "strogonoff $180,00"
+        case "4":
+            pedido = "bife acebolado $15,00"
+        case _:
+            print("não consta no menu")
 
 print(f"Pedido escolhido e suas informações: {pedido}")
