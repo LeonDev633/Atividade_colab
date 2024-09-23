@@ -2,30 +2,25 @@ import os
 os.system("cls||clear")
 import time
 
-def logo_senai():
-    print("""\033[34m
-===============
----  \033[37mSENAI\033[34m  ---
-===============  \033[m        
-
-""")
+carrinho_de_compra=[]
+lista_selecao = []
 
 #Informando valores:
 def cardapio_apresentacao():
     print(""" 
-    escreva o codigo do prato para fazer o pedido:
-    codigo |alimento        |valor |
+   ===== INFORME O NUMERO DO ITEM SELECIONADO =====\n
+    N°     |    ALIMENTO    |  VALOR  |
           
-    1     |Picanha         | 25,90R$ |
-    2     |Lasanha         | 20,90R$ |
-    3     |Strogonoff      | 18,90R$ |
-    4     |Bife acebolado  | 15,90R$ |
-    5     |Feijoada        | 50,90R$ |
-    6     |Macarronada     | 19,90R$ |
-    7     |Bebidas         | 05,90R$ |
+    1      |Picanha         | 25,90R$ |
+    2      |Lasanha         | 20,90R$ |
+    3      |Strogonoff      | 18,90R$ |
+    4      |Bife acebolado  | 15,90R$ |
+    5      |Feijoada        | 50,90R$ |
+    6      |Macarronada     | 19,90R$ |
+    7      |Bebidas         | 05,90R$ |
         """)
     
-#Dados:   
+#Valores dos pratos:   
 def codigo_card(a):
     if a == 1:
         picanha = 25.90
@@ -49,32 +44,80 @@ def codigo_card(a):
         bebidas = 05.90
         return bebidas
 
-#Processamento de dados:
+#Forma de pagamento:
 def finalizando_compra (a, b):
     desconto = (sum(b))*0.1
     if a == 1:
+        #Debito
         soma = sum(b)
         desconto = 0
         return soma, desconto
     elif a == 2:
+        #Crédito
         soma = sum(b)
         result = soma + (desconto)
         return result, desconto
     elif a == 3:
+        #Dinheiro
         soma = sum(b)
         result = soma - desconto
         return result, desconto
     elif a == 4:
+        #Pix
         soma = sum(b)
         result = soma - desconto
         return result, desconto
-        
 
-carrinho_de_compra=[]
-lista_selecao = []
+#Pratos selecionados:        
+def pratos_selecionados(a):
+    itens_selecionados=[]
+    for lista_itens in a:
+        if lista_itens==1:
+            itens_selecionados.append(" Picanha : 25,90R$ ")
+        elif lista_itens==2:
+            itens_selecionados.append(" Lasanha : 20,90R$ ")
+        elif lista_itens==3:
+            itens_selecionados.append(" Strogonoff : 18,90R$ ")
+        elif lista_itens==4:
+            itens_selecionados.append(" Bife acebolado : 15,90R$ ")
+        elif lista_itens==5:
+            itens_selecionados.append(" Feijoada : 50,90R$ ") 
+        elif lista_itens==6:
+            itens_selecionados.append(" Macarronada : 19,90R$ ")
+        elif lista_itens==7:
+            itens_selecionados.append(" Bebidas : 5,90R$ ")
+    return itens_selecionados
+
+#Processando pagamento
+def imprimindo_pagamento(a,b,c):
+    total = a
+    valor_total, desconto = b(opcao3,carrinho_de_compra)
+    forma_pag=[]
+    if c != 2:
+        if c == 1:
+            forma_pag.append('Débito')
+        elif c == 3:
+            forma_pag.append('Dinheiro')
+        elif c== 4:
+            forma_pag.append('Pix')
+         
+        for pag in forma_pag:
+            print(f"\nPagamento: {pag}\n")
+        print(f"Valor Bruto: {total:.2f}R$")
+        print(f"Desconto: {desconto:.2f}R$")
+        print(f"Total a pagar: {valor_total:.2f}R$")
+    elif c == 2:
+        forma_pag.append('Crédito')
+        for pag in forma_pag:
+            print(f"\nPagamento: {pag}\n")
+        print(f"Valor Bruto: {total:.2f}R$")
+        print(f"Acréscimo: {desconto:.2f}R$")
+        print(f"Total a pagar: {valor_total:.2f}R$")
+
+#def selecao_prato():
+
 
 while True:
-    logo_senai()
     cardapio_apresentacao()
     while True:
         opcao = int(input("Escolha seu prato: "))
@@ -82,135 +125,116 @@ while True:
         if (opcao >=1)and(opcao <=7):
             break
         else:
-            print("Prato invalido, informe o codigo do prato novamente.")
+            print("\nCodigo de prato invalido, informe o codigo do prato novamente.")
             time.sleep(2)
+            os.system("cls||clear")
+            cardapio_apresentacao()
     match(opcao):
         case 1:
             picanha=codigo_card(opcao)    
             carrinho_de_compra.append(picanha)
             opcao2=int(input("""Deseja adcionar outro prato ?
-                          1- SIM
-                          0- NÂO
-                        : """))
+0- NÂO
+1- SIM
+        : """))
             if opcao2==1:
-                opcao
+                os.system("cls||clear")
+                opcao 
             else:
                 break
         case 2:
-            lasanha=codigo_card(opcao)
+            lasanha=codigo_card(opcao)    
             carrinho_de_compra.append(lasanha)
             opcao2=int(input("""Deseja adcionar outro prato ?
-                          1- SIM
-                          0- NÂO
-                         : """))
-            if opcao2==1:
+0- NÂO
+1- SIM
+        : """))
+            if opcao2==2:
+                os.system("cls||clear")
                 opcao
             else:
                 break
         case 3:
-            strogonoff = codigo_card(opcao)
+            strogonoff=codigo_card(opcao)    
             carrinho_de_compra.append(strogonoff)
             opcao2=int(input("""Deseja adcionar outro prato ?
-                          1- SIM
-                          0- NÂO
-                         : """))
+0- NÂO
+1- SIM
+        : """))
             if opcao2==1:
-                opcao 
+                os.system("cls||clear")
+                opcao
             else:
                 break
         case 4:
-            bife_acebolado = codigo_card(opcao)
+            bife_acebolado=codigo_card(opcao)    
             carrinho_de_compra.append(bife_acebolado)
             opcao2=int(input("""Deseja adcionar outro prato ?
-                          1- SIM
-                          0- NÂO
-                         : """))
+0- NÂO
+1- SIM
+        : """))
             if opcao2==1:
+                os.system("cls||clear")
                 opcao
             else:
                 break
         case 5:
-            feijoada = codigo_card(opcao)
+            feijoada=codigo_card(opcao)    
             carrinho_de_compra.append(feijoada)
             opcao2=int(input("""Deseja adcionar outro prato ?
-                          1- SIM
-                          0- NÂO
-                         : """))
+0- NÂO
+1- SIM
+        : """))
             if opcao2==1:
+                os.system("cls||clear")
                 opcao
             else:
                 break
         case 6:
-            macarronada = codigo_card(opcao)
+            macarronada=codigo_card(opcao)    
             carrinho_de_compra.append(macarronada)
             opcao2=int(input("""Deseja adcionar outro prato ?
-                          1- SIM
-                          0- NÂO
-                         : """))
+0- NÂO
+1- SIM
+        : """))
             if opcao2==1:
+                os.system("cls||clear")
                 opcao
             else:
                 break
         case 7:
-            bebidas = codigo_card(opcao)
+            bebidas=codigo_card(opcao)    
             carrinho_de_compra.append(bebidas)
             opcao2=int(input("""Deseja adcionar outro prato ?
-                          1- SIM
-                          0- NÂO
-                         : """))
+0- NÂO
+1- SIM
+        : """))
             if opcao2==1:
+                os.system("cls||clear")
                 opcao
             else:
                 break
 
-#Formas de pagamento        
+#Formas de pagamento 
 while True:
-    opcao3 = int(input(""" ==== PAGAMENTO ====
-                   1- DEBITO
-                   2- CRÉDITO
-                   3- DINHEIRO
-                   4- PIX
-                   : """)) 
+    opcao3 = int(input(""" \n==== PAGAMENTO ====\n
+1- DEBITO
+2- CRÉDITO
+3- DINHEIRO
+4- PIX
+            : """)) 
     while True:
-        if (opcao >=1) and (opcao <=4):
+        if (opcao >=1) or (opcao <=4):
                 break
         else:
-            print("Favor selecionar uma opção valida.")
+            print("\nA opção selecionada está incorreta: ")
             time.sleep(2)
     match (opcao3):
-        case 1:
+        case 1 | 2 | 3 | 4:
             total = sum(carrinho_de_compra)
-            valor_total, desconto = finalizando_compra(opcao3,carrinho_de_compra)
-            print("Pagamento: Débito")
-            print(f"Valor Bruto: {total:.2f}R$")
-            print(f"Desconto: {desconto:.2f}R$")
-            print(f"Valor com desconto: {valor_total:.2f}R$")
-            print(f"Codigo dos produtos solicitados: {lista_selecao}")
-            break
-        case 2:
-            total = sum(carrinho_de_compra)
-            valor_total, desconto = finalizando_compra(opcao3,carrinho_de_compra)
-            print("Pagamento: Crédito")
-            print(f"Valor Bruto: {total:.2f}R$")
-            print(f"Acréscimo: {desconto:.2f}R$")
-            print(f"Valor acrescido: {valor_total:.2f}R$")
-            print(f"Codigo dos produtos solicitados: {lista_selecao}")
-            break
-        case 3:
-            total = sum(carrinho_de_compra)
-            valor_total, desconto = finalizando_compra(opcao3,carrinho_de_compra)
-            print("Pagamento: Dinheiro")
-            print(f"Valor Bruto: {total:.2f}R$")
-            print(f"Desconto: {desconto:.2f}R$")
-            print(f"Valor com desconto: {valor_total:.2f}R$")
-            print(f"Codigo dos produtos solicitados: {lista_selecao}")
-            break
-        case 4:
-            total = sum(carrinho_de_compra)
-            valor_total, desconto = finalizando_compra(opcao3,carrinho_de_compra)
-            print("Pagamento: Pix")
-            print(f"Valor Bruto: {total:.2f}R$")
-            print(f"Desconto: {desconto:.2f}R$")
-            print(f"Valor com desconto: {valor_total:.2f}R$")
-            print(f"Codigo dos produtos solicitados: {lista_selecao}")
+            imprimindo_pagamento(total,finalizando_compra,opcao3) 
+            compra=pratos_selecionados(lista_selecao)
+            print("\n=== PRATOS SELECIONADOS ===\n")
+            for pratos in compra:
+                print(pratos)          
             break
