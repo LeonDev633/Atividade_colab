@@ -15,3 +15,26 @@ O valor final a ser pago."""
 
 import os
 os.system("cls||clear")
+
+print(""" 
+escreva o codigo do prato para fazer o pedido:
+codigo |alimento       |valor |
+1      |picanha        |25,00 |
+2      |lasanha        |20,00 |
+3      |strogonoff     |180,00|
+4      |bife acebolado |15,00 |
+    """)
+opcao = input("escolha seu prato:")
+match(opcao):
+    case "1":
+        pedido = "picanha $25,00"
+    case "2":
+        pedido = "lasanha $20,00"
+    case "3":
+        pedido = "strogonoff $180,00"
+    case "4":
+        pedido = "bife acebolado $15,00"
+    case _:
+        print("não consta no menu")
+
+print(f"Pedido escolhido e suas informações: {pedido}")
