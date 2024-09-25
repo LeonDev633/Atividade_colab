@@ -114,9 +114,7 @@ def imprimindo_pagamento(a,b,c):
         print(f"Acréscimo: {desconto:.2f}R$")
         print(f"Total a pagar: {valor_total:.2f}R$")
 
-#def selecao_prato():
-
-
+#Selecionado Pratos:
 while True:
     cardapio_apresentacao()
     while True:
@@ -215,7 +213,7 @@ while True:
             else:
                 break
 
-#Formas de pagamento 
+#Formas de Pagamento: 
 while True:
     opcao3 = int(input(""" \n==== PAGAMENTO ====\n
 1- DEBITO
