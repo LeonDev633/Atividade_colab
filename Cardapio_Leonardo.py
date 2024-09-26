@@ -1,3 +1,4 @@
+#ALUNOS: LEONARDO MACHADO | IURY ALVES
 import os
 os.system("cls||clear")
 list_opcoes = []
