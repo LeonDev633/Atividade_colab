@@ -10,18 +10,18 @@ def pagamento(total:float,opcao:int):
         #A vista:
         total_bruto = soma
         total_desconto = soma - desconto
-        print("Forma de pagamento: A vista")
-        print(f"Total: {total_bruto:.2f} R$")
-        print(f"Desconto : {desconto:.2f} R$")
-        print(f"Valor a pagar: {total_desconto:.2f} R$")
+        print("\033[32mForma de pagamento: A vista\033[m")
+        print(f"\033[32mTotal: {total_bruto:.2f} R$\033[m")
+        print(f"\033[32mDesconto : {desconto:.2f} R$\033[m")
+        print(f"\033[32mValor a pagar: {total_desconto:.2f} R$\033[m")
     else:
         #A prazo:
         total_bruto = soma
         total_acrescimo = soma + desconto
-        print("Forma de pagamento: A Prazo")
-        print(f"Total: {total_bruto:.2f} R$")
-        print(f"Acréscimo: {desconto:.2f} R$")
-        print(f"Valor a pagar: {total_acrescimo:.2f} R$")
+        print("\033[32mForma de pagamento: A Prazo\033[m")
+        print(f"\033[32mTotal: {total_bruto:.2f} R$\033[m")
+        print(f"\033[32mAcréscimo: {desconto:.2f} R$\033[m")
+        print(f"\033[32mValor a pagar: {total_acrescimo:.2f} R$\033[m")
 
 def selecao_prato(opcao):
     list_valores = []
@@ -61,25 +61,25 @@ def selecao_prato(opcao):
 while True:
     while True:
         opcao =int(input("""
-\n========== CARDÁPIO ===========\n
-COD |  ITEM        |     VALOR
+\n\033[4;31m========== CARDÁPIO ===========\033[m\n
+\033[37mCOD |  ITEM        |     VALOR
 1   | Pizza        |   25,90 R$
 2   | Churrasco    |   19,90 R$
 3   | Lasanha      |   23,90 R$
 4   | Cerveja      |   10,90 R$
 5   | Refrigerante |   7,90  R$
 6   | Água         |   5,90  R$ 
-7   | Combo        |   90,00 R$
-\nInforme o item desejado:"""))
+7   | Combo        |   90,00 R$\033[m
+\n\033[4;31mInforme o item desejado:\033[m """))
         list_opcoes.append(opcao)
         if (opcao >= 1) and (opcao<=7):
             break
         else:
-            print(f"Código de prato inválido, informe o código novamente.")
-    retorn = int(input("""Você deseja adicionar outro item ?
-                       0 - Para não
+            print(f"\033[31mCódigo de prato inválido, informe o código novamente.\033[m")
+    retorn = int(input("""\033[31mVocê deseja adicionar outro item ?\033[m
+                       \033[31m0 - Para não
                        1 - Para sim
-                       : """))
+                       : \033[m"""))
     os.system("cls||clear")
     if (retorn == 0):
         lista_pratos, lista_valores = selecao_prato(list_opcoes)
@@ -91,13 +91,13 @@ COD |  ITEM        |     VALOR
 while True:
     while True:
         opcao1 =int(input("""
-\n========== PAGAMENTO ===========\n                          
-1 - A vista : 10% de desconto
+\n\033[4;31m========== PAGAMENTO ===========\033[m\n                          
+1 - A vista : 10% de desconto\n
 2 - Credito : 10% de acrescimo 
-\nInforme a opção desejado: \n"""))
+\n\033[4;31mInforme a opção desejado: \033[m\n"""))
         if (opcao1 == 1) or (opcao1==2):
             pagamento(lista_valores,opcao1)
             break
     for i,item in enumerate(lista_pratos):
-        print(f"{i+1}º item : {item}")
+        print(f"\033[32m{i+1}º item : {item}")
     break
