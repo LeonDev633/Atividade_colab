@@ -213,7 +213,11 @@ while True:
             else:
                 break
 
+<<<<<<< HEAD
 #Formas de Pagamento: 
+=======
+#Formas de pagamento 
+>>>>>>> 9d60405 (Finalizado)
 while True:
     opcao3 = int(input(""" \n==== PAGAMENTO ====\n
 1- DEBITO
